@@ -50,6 +50,18 @@ function readFood() {
     iconDel.addEventListener("click", () => {
       deleteFood(item.id);
     });
+
+    toOrder.addEventListener("click", () => {
+      let newData = JSON.parse(localStorage.getItem("order")) || [];
+      let findOrderItem = data.find((el, index) => index === idx);
+
+      if (newData.some((someItem) => someItem.id === item.id)) {
+        alert("Этот продукт уже добавлен!!!");
+      } else {
+        newData.push(findOrderItem);
+        localStorage.setItem("order", JSON.stringify(newData));
+      }
+    });
   });
 }
 
